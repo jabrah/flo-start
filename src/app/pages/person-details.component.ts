@@ -59,6 +59,7 @@ export class PersonDetailComponent implements OnInit {
     } else if (this.mode === PersonDetailMode.EDIT) {
       this.save();
     }
+    this.goBack();
   }
 
   goBack(): void {

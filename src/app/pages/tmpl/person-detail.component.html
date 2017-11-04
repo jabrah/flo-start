@@ -6,30 +6,59 @@
       <input [(ngModel)]="it.firstName" placeholder="First Name" />
   -->
   <div class="row">
-    <div class="col"><label>First Name:</label> {{it.firstName}}</div>
-    <div class="col"><label>Last Name:</label> {{it.lastName}}</div>
+    <div class="col"><label>First Name:</label>
+      <span *ngIf="!savable">{{it.firstName}}</span>
+      <input *ngIf="savable" [(ngModel)]="it.firstName" placeholder="First Name" />
+    </div>
+    <div class="col"><label>Last Name:</label>
+      <span *ngIf="!savable">{{it.lastName}}</span>
+      <input *ngIf="savable" [(ngModel)]="it.lastName" placeholder="Last Name" />
+    </div>
   </div>
   <div class="row">
-    <div class="col"><label>Street Address:</label> it.address</div>
-    <div class="col"><label>State:</label> {{it.state}}</div>
+    <div class="col"><label>Street Address:</label>
+      <span *ngIf="!savable">{{it.address}}</span>
+      <input *ngIf="savable" [(ngModel)]="it.address" placeholder="Street Address" />
+    </div>
+    <div class="col"><label>State:</label>
+      <span *ngIf="!savable">{{it.state}}</span>
+      <input *ngIf="savable" [(ngModel)]="it.state" placeholder="State" />
+    </div>
   </div>
   <div class="row">
-    <div class="col"><label>Zip Code:</label> {{it.zipCode}}</div>
-    <div class="col"><label>Phone Number:</label> {{it.phone}}</div>
+    <div class="col"><label>Zip Code:</label>
+      <span *ngIf="!savable">{{it.zipCode}}</span>
+      <input *ngIf="savable" [(ngModel)]="it.zipCode" placeholder="Zip Code" />
+    </div>
+    <div class="col"><label>Phone Number:</label>
+      <span *ngIf="!savable">{{it.phone}}</span>
+      <input *ngIf="savable" [(ngModel)]="it.phone" placeholder="Phone Number" />
+    </div>
   </div>
   <div class="row">
-    <div class="col"><label>Employer:</label> {{it.employer}}</div>
+    <div class="col"><label>Employer:</label>
+      <span *ngIf="!savable">{{it.employer}}</span>
+      <input *ngIf="savable" [(ngModel)]="it.employer" placeholder="Name of Employer" />
+    </div>
   </div>
 
   <h3>Insurance</h3>
   <div class="row">
-    <div class="col"><label>Insurance Provider:</label> {{it.iProvider}}</div>
+    <div class="col"><label>Insurance Provider:</label>
+      <span *ngIf="!savable">{{it.iProvider}}</span>
+      <input *ngIf="savable" [(ngModel)]="it.iProvider" placeholder="Insurance Provider" />
+    </div>
   </div>
   <div class="row">
-    <div class="col"><label>Plan #</label> {{it.iPlanNum}}</div>
+    <div class="col"><label>Plan #</label>
+      <span *ngIf="!savable">{{it.iPlanNum}}</span>
+      <input *ngIf="savable" [(ngModel)]="it.iPlanNum" placeholder="Insurance Plan Number" />
+    </div>
   </div>
 
-  <button (click)="doTheThing()">Save</button>
-  <button (click)="goBack()">Cancel</button>
+  <div class="controls">
+    <button *ngIf="savable" (click)="doTheThing()">Save</button>
+    <button (click)="goBack()">Cancel</button>
+  </div>
 
 </div>
