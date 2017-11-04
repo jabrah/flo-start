@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { DataService } from '../data/data.service';
 import { Person } from '../data/person';
@@ -16,7 +17,8 @@ export class DataTableComponent implements OnInit {
   peeps: Person[] = [];
 
   constructor(
-    private dataService: DataService
+    private dataService: DataService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -25,6 +27,10 @@ export class DataTableComponent implements OnInit {
   }
 
   onSelect(person: Person): void {
-    
+    this.router.navigate(['/person', person.id]);
+  }
+
+  delete(person: Person): void {
+    this.dataService.deletePerson(person.id);
   }
 }

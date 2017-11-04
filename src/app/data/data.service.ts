@@ -9,15 +9,23 @@ import { Person } from './person';
 export class DataService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
+  private dataUrl = 'api/data';
 
   constructor(private http: Http) {}
 
   getAllPeople(): Promise<Person[]> {
-    return new Person[0];
+    return this.http.get(this.dataUrl)
+      .toPromise()
+      .then(resp => resp.json() as Person[])
+      .catch(this.handleError);
   }
 
   getPerson(id: number): Promise<Person> {
-    return null;
+    const url = `${this.dataUrl}/${id}`;
+    return this.http.get(url)
+      .toPromise()
+      .then(resp => resp.json() as Person)
+      .catch(this.handleError);
   }
 
   /**
@@ -27,14 +35,30 @@ export class DataService {
    *                            could not be added
    */
   addPerson(dude: Person): Promise<Person> {
-    return null;
+    return this.http.post(this.dataUrl, JSON.stringify(dude), {headers: this.headers})
+      .toPromise()
+      .then(resp => resp.json() as Person)
+      .catch(this.handleError);
   }
 
   updatePerson(dudette: Person): Promise<Person> {
-    return null;
+    const url = `${this.dataUrl}/${dudette.id}`;
+    return this.http.put(url, JSON.stringify(dudette), {headers: this.headers})
+      .toPromise()
+      .then(() => dudette)
+      .catch(this.handleError);
+  }
+
+  deletePerson(id: number): Promise<Person> {
+    const url = `${this.dataUrl}/${id}`;
+    return this.http.delete(url, {headers: this.headers})
+      .toPromise()
+      .then(() => null)
+      .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
+    console.log("Sad Moo: " + JSON.stringify(error));
     return Promise.reject(error.message || error);
   }
 }

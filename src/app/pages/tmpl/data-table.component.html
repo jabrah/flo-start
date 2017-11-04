@@ -14,7 +14,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr &ngFor="let person of peeps" (click)="onSelect(person)" [class.selected]="person === selectedPerson">
+    <!-- <tr *ngFor="let person of peeps" (click)="onSelect(person)"> -->
+    <tr *ngFor="let person of peeps" [routerLink]="['/person', person.id]" fragment="view">
       <td>{{person.firstName}}</td>
       <td>{{person.lastName}}</td>
       <td>{{person.address}}</td>
@@ -25,17 +26,17 @@
       <td>{{person.iProvider}}</td>
       <td>{{person.iPlanNum}}</td>
       <td>
-        <button class="edit" aria-label="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+        <button class="edit" aria-label="edit" [routerLink]="['/person', person.id]" fragment="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
       </td>
       <td>
-        <button class="delete" aria-label="delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+        <button class="delete" aria-label="delete" (click)="delete(person); $event.stopPropagation();"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
       </td>
     </tr>
   </tbody>
 </table>
 <div style="container">
   <button class="add-person" aria-label="Add new person">
-    <i class="fa fa-2x fa-plus" aria-hidden="true"></i>
+    <i class="fa fa-lg fa-plus" aria-hidden="true"></i>
     Add Someone
   </button>
 </div>

@@ -2,17 +2,18 @@
  * Data object
  */
 export class Person {
+
   constructor(
-    id: number,
-    firstName: string,
-    lastName: string,
-    address: string,
-    state: string,
-    zipCode: number,
-    phone: number,
-    employer: string,
-    iProvider: string,
-    iPlanNum: string,
+    public id: number,
+    public firstName: string,
+    public lastName: string,
+    public address: string,
+    public state: string,
+    public zipCode: number,
+    public phone: number,
+    public employer: string,
+    public iProvider: string,
+    public iPlanNum: string,
   ) {}
 
   static toPerson(data: any): Person {
