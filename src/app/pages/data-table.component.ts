@@ -15,10 +15,16 @@ import { Person } from '../data/person';
 export class DataTableComponent implements OnInit {
   peeps: Person[] = [];
 
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService
+  ) {}
 
   ngOnInit() {
     this.dataService.getAllPeople()
       .then(people => this.peeps = people);
+  }
+
+  onSelect(person: Person): void {
+    
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
-import 'txjs/add/operator/toPromise';
+import 'rxjs/add/operator/toPromise';
 
 import { Person } from './person';
 
