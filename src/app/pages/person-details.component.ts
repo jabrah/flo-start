@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import 'rxjs/add/operator/switchMap';
@@ -29,6 +29,7 @@ export class PersonDetailComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
+    private router: Router,
     private route: ActivatedRoute,
     private location: Location
   ) {}
@@ -59,7 +60,7 @@ export class PersonDetailComponent implements OnInit {
     } else if (this.mode === PersonDetailMode.EDIT) {
       this.save();
     }
-    this.goBack();
+    this.router.navigate(['/all']);
   }
 
   goBack(): void {
