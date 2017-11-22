@@ -1,5 +1,5 @@
 {
-  "name": "trial-submission",
+  "name": "flo-start",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -7,9 +7,7 @@
     "start": "ng serve",
     "xpres": "ng build && node ./server/server.js",
     "build": "ng build",
-    "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -28,7 +26,9 @@
     "core-js": "^2.4.1",
     "express": "^4.16.2",
     "mongodb": "^2.2.33",
+    "mongoose": "^4.13.4",
     "rxjs": "^5.5.2",
+    "uuid": "^3.1.0",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {

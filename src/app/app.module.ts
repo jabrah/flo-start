@@ -34,7 +34,7 @@ import { PostsService } from './data/posts.service';
     // InMemoryWebApiModule.forRoot(InMemoryDataService)
   ],
   providers: [
-    // DataService,
+    DataService,
     PostsService
   ],
   bootstrap: [AppComponent]
