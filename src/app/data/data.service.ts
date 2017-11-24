@@ -20,7 +20,7 @@ export class DataService {
       .catch(this.handleError);
   }
 
-  getPerson(id: number): Promise<Person> {
+  getPerson(id: string): Promise<Person> {
     const url = `${this.dataUrl}/${id}`;
     return this.http.get(url)
       .toPromise()
@@ -42,18 +42,19 @@ export class DataService {
   }
 
   updatePerson(dudette: Person): Promise<Person> {
-    const url = `${this.dataUrl}/${dudette.id}`;
+    const url = `${this.dataUrl}/${dudette.moo}`;
     return this.http.put(url, JSON.stringify(dudette), {headers: this.headers})
       .toPromise()
       .then(() => dudette)
       .catch(this.handleError);
   }
 
-  deletePerson(id: number): Promise<Person> {
+  // When done, find all people in DB and return
+  deletePerson(id: string): Promise<Person[]> {
     const url = `${this.dataUrl}/${id}`;
     return this.http.delete(url, {headers: this.headers})
       .toPromise()
-      .then(() => null)
+      .then(resp => resp.json() as Person[])
       .catch(this.handleError);
   }
 

@@ -16,7 +16,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let person of peeps" [routerLink]="['/person', person.id]" fragment="VIEW">
+    <tr *ngFor="let person of peeps" [routerLink]="['/person', person.moo]" fragment="VIEW">
       <td>{{person.firstName}}</td>
       <td>{{person.lastName}}</td>
       <td>{{person.address}}</td>
@@ -27,7 +27,7 @@
       <td>{{person.iProvider}}</td>
       <td>{{person.iPlanNum}}</td>
       <td>
-        <button class="edit btn btn-secondary" aria-label="edit" [routerLink]="['/person', person.id]" fragment="EDIT">
+        <button class="edit btn btn-secondary" aria-label="edit" [routerLink]="['/person', person.moo]" fragment="EDIT">
           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </button>
       </td>

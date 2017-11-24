@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const personSchema = new mongoose.Schema({
-  id: {type: String, unique: true},
+  moo: {type: String, unique: true},
   firstName: String,
   lastName: String,
   address: String,
@@ -12,6 +12,6 @@ const personSchema = new mongoose.Schema({
   iPlanNum: String
 });
 
-const Person = mongoose.model('Person', personSchema);
+const Person = mongoose.model('Person', personSchema, 'people');
 
 module.exports = Person;

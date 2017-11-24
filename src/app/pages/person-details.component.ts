@@ -25,6 +25,7 @@ export class PersonDetailComponent implements OnInit {
   it: Person;
   mode: PersonDetailMode;
 
+  // Used in template
   savable: boolean = false;
 
   constructor(
@@ -45,7 +46,7 @@ export class PersonDetailComponent implements OnInit {
         }
         if (this.mode === PersonDetailMode.VIEW || this.mode === PersonDetailMode.EDIT) {
           this.route.paramMap
-            .switchMap((params: ParamMap) => this.dataService.getPerson(+params.get('id')))
+            .switchMap((params: ParamMap) => this.dataService.getPerson(params.get('id')))
             .subscribe(person => this.it = person);
         } else {
           this.it = Person.toPerson({});
@@ -71,7 +72,11 @@ export class PersonDetailComponent implements OnInit {
    * Update the record for a given person.
    */
   private save(): void {
-    this.dataService.updatePerson(this.it);
+    if (!this.it) {
+      console.log("[Client] No person selected.");
+    } else {
+      this.dataService.updatePerson(this.it);
+    }
   }
 
   /**

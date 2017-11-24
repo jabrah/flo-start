@@ -27,10 +27,11 @@ export class DataTableComponent implements OnInit {
   }
 
   onSelect(person: Person): void {
-    this.router.navigate(['/person', person.id]);
+    this.router.navigate(['/person', person.moo]);
   }
 
   delete(person: Person): void {
-    this.dataService.deletePerson(person.id);
+    this.dataService.deletePerson(person.moo)
+      .then(people => this.peeps = people);
   }
 }

@@ -21,41 +21,65 @@ router.get('/data', (req, res) => {
   log(" >> GET /data (Getting all data)");
   Person.find((err, people) => {
     if (err) {
-      handleError(err, res);
+      return handleError(err, res);
     }
     res.status(200).json(people);
-  })
+  });
 });
 
 // Get a person
-router.get('/data/:id', (req, res) => {
-  log(" >> GET /data/id " + JSON.stringify(req.params));
-  res.status(200).json({id:-1, firstName: "Mittens", lastName: "Kittens"});
+router.get('/data/:moo', (req, res) => {
+  log(" >> GET /data/moo " + JSON.stringify(req.params));
+  Person.findOne({"moo": req.params.moo}, (err, person) => {
+    if (err) {
+      return handleError(err, res);
+    }
+    log(JSON.stringify(person));
+    res.status(200).send(person);
+  });
 });
 
 // Add person
 router.post('/data', (req, res, next) => {
   log(" >> POST /data " + JSON.stringify(req.body));
-  req.body.id = uuid();
   let noob = new Person(req.body);
+  noob.moo = uuid();
   noob.save((err, theSaved) => {
     if (err) {
-      handleError(err, res);
+      return handleError(err, res);
     }
-    res.status(200).send(noob);
+    res.status(200).json(noob);
   });
 });
 
 // Update person
-router.put('/data/:id', (req, res, next) => {
-  log(" >> PUT /data/:id " + JSON.stringify(req.params) + "\n\t" + JSON.stringify(req.body));
-  res.status(200).send(req.body);
+router.put('/data/:moo', (req, res, next) => {
+  log(" >> PUT /data/:moo " + JSON.stringify(req.params) + "\n\t" + JSON.stringify(req.body));
+  Person.findOneAndUpdate({moo: req.params.moo}, req.body, (err, person) => {
+    if (err) {
+      return handleError(err, res);
+    }
+    log("Updated: " + JSON.stringify(person));
+    res.status(200).json(person);
+  });
 });
 
 // Delete person
-router.delete('/data/:id', (req, res) => {
-  log(" >> DELETE /data/id " + req.params.id);
-  res.status(200).send(req.body);
+router.delete('/data/:moo', (req, res) => {
+  log(" >> DELETE /data/moo " + req.params.moo);
+  Person.findOneAndRemove({moo: req.params.moo}, (err) => {
+    if (err) {
+      return handleError(err, res);
+    }
+    log("Successfully deleted person {moo: " + req.params.moo + "}")
+    // Now get all people in DB and return
+    Person.find((err, people) => {
+      if (err) {
+        return handleError(err, res);
+      }
+      res.status(200).json(people);
+    });
+  });
 });
 
 // Useful to separate out if we want to disable logging

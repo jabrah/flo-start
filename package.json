@@ -7,7 +7,7 @@
     "start": "ng serve",
     "xpres": "ng build && node ./server/server.js",
     "build": "ng build",
-    "lint": "ng lint",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
