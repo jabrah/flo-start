@@ -61,6 +61,8 @@ directory, install dependencies with NPM. This can take some time, go ahead and 
 npm install
 ```
 
+Make sure MongoDB is running locally on port 27017 `sudo mongod`
+
 After dependencies are done installing, assuming no errors have occurred, you should be able to
 start up the application now.
 
