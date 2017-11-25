@@ -2,18 +2,22 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
-
+const environment = require('dotenv');
 const mongoose = require('mongoose');
 
 const api = require('./routes/api');
 
 const app = express();
 
-const DB_URL = "mongodb://localhost:27017/flo";
+// =============================================================================
+// ##### Environment : read the .env file from ROOT
+// .env is not available in the git project, must be created
+environment.config();
+
 // =============================================================================
 // ##### Connect to MongoDB through Mongoose
 mongoose.Promise = global.Promise;
-mongoose.connect(DB_URL);
+mongoose.connect(process.env.DB_URL);
 mongoose.connection.on('error', (err) => {
   console.error(err);
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.');
