@@ -11,8 +11,7 @@ const routes: Routes = [
   { path: 'all', component: DataTableComponent },
   { path: 'person/:id', component: PersonDetailComponent },
   { path: 'person/new', component: PersonDetailComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'posts', component: PostsComponent }
+  { path: 'about', component: AboutComponent }
 ];
 
 @NgModule({
